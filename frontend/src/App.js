@@ -1,34 +1,23 @@
 import './App.css';
 import React, { useState } from "react"
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom"
 import LoginForm from "./components/LoginForm"
+import RecipePage from "./components/RecipePage"
+import SignUp from "./components/SignUp"
 
 function App() {
-  const adminUser = {
-    email: "test.com",
-    password: "admin123"
-  }
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-  }
-  
-  const Logout = () => {
-    console.log("Logout");
-  }
   
   return (
+    <BrowserRouter>
     <div className="App">
-    {(user.email != "") ? (
-      <div className="welcome">
-        <h2>Welcome, <span>{user.name}</span></h2>
-        <button>Logout</button>
-      </div>
-    ) : (
-      <LoginForm Login={Login} error={error}/>
-    )}
+     
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/RecipePage" element={ <RecipePage /> } />
+        <Route path="/SignUp" element={ <SignUp /> } />
+      </Routes>
     </div>
+    </BrowserRouter>
   )
 }
 
