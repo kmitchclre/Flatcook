@@ -1,9 +1,12 @@
 import './App.css';
-import React, { useState } from "react"
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom"
 import LoginForm from "./components/LoginForm"
 import RecipePage from "./components/RecipePage"
 import SignUp from "./components/SignUp"
+import NavBar from "./components/NavBar"
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 
 function App() {
   
@@ -14,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/RecipePage" element={ <RecipePage /> } />
-        <Route path="/SignUp" element={ <SignUp /> } />
+        {/* <Route path="/ContactUs" element={ <NavBar />} /> */}
+        <Route path="/SignUp" element={ <SignUp />} />
       </Routes>
     </div>
     </BrowserRouter>

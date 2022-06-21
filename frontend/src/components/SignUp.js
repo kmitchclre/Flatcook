@@ -1,7 +1,8 @@
 import React, { useState} from 'react'
-
+import {useNavigate} from "react-router-dom"
 
 function SignUp() {
+    let navigate = useNavigate();
 
     const [state, setState] = useState({first_name: "", last_name: "", email: "", password: ""});
 
@@ -18,6 +19,10 @@ function SignUp() {
         console.log(state);
     }
     
+
+    function handleClick () {
+        navigate("/RecipePage")
+    }
   return (
     <form onSubmit={handleSubmit} className="form-login">
         <h1>Sign Up</h1>
@@ -59,7 +64,7 @@ function SignUp() {
                 />
             </div>
             <div className="form-control-submit">
-                <button type="submit">Create Account</button>
+                <button type="submit" onClick={handleClick}>Create Account</button>
             </div>
 
             {/* <div className="form-control-account">

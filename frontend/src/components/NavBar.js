@@ -1,156 +1,226 @@
-import React from 'react'
-// import CreateNewRecipe from './CreateNewRecipe'
-import {useNavigate} from "react-router-dom"
-import food from '../images/pot-of-food.svg'
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 
+import {
+  Nav,
+  NavbarContainer,
+  NavLogo,
+  NavIcon,
+  MobileIcon,
+  NavMenu,
+  NavItem,
+  NavItemBtn,
+  NavLinks,
+  NavBtnLink,
+  Button
+} from "./Navbar.style";
 
+function Navbar() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
 
-function NavBar() {
-  let navigate = useNavigate();
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
 
-  function handleHome() {
-    navigate("/RecipePage")
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      //mobile
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener("resize", showButton);
+
+  return (
+    <>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <Nav>
+          <NavbarContainer>
+            <NavLogo to="/" onClick={closeMobileMenu}>
+              
+            Flatiron Recipes <img src="/pot-of-food.svg" />
+            </NavLogo>
+            <MobileIcon onClick={handleClick}>
+              {click ? <FaTimes /> : <FaBars />}
+            </MobileIcon>
+            <NavMenu onClick={handleClick} click={click}>
+              <NavItem>
+                <NavLinks to="/" onClick={closeMobileMenu}>
+                  Home
+                </NavLinks>
+              </NavItem>
+
+              <NavItem>
+                <NavLinks to="/Recipes" onClick={closeMobileMenu}>
+                  Recipes
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to="/CreateRecipe" onClick={closeMobileMenu}>
+                  Create Recipe
+                </NavLinks>
+              </NavItem>
+
+              <NavItem>
+                <NavLinks to="ContactUs" onClick={closeMobileMenu}>
+                  Contact Us
+                </NavLinks>
+              </NavItem>
+
+              <NavItemBtn>
+                {button ? (
+                  <NavBtnLink to="/">
+                    <Button primary>LOG OUT</Button>
+                  </NavBtnLink>
+                ) : (
+                  <NavBtnLink to="/">
+                    <Button onClick={closeMobileMenu} fontBig primary>
+                      LOG OUT
+                    </Button>
+                  </NavBtnLink>
+                )}
+              </NavItemBtn>
+            </NavMenu>
+          </NavbarContainer>
+        </Nav>
+      </IconContext.Provider>
+    </>
+  );
 }
-  return ( 
-  
-  <div className="NavBar">
-    <div className="left-side">
-      <h1 onClick={handleHome} a href="/RecipePage">Flatcook Recipes <img src={food} /></h1>
-    </div>
-    <div className="middle">
-      <input type="text" placeholder="Search Recipes..."/>
-    </div>
-    <div className="right-side">
-      <nav>
-      
-      </nav>
 
-    </div>
+export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // function NavBar() {
+  //   let navigate = useNavigate();
+  
+  //   function handleHome() {
+  //     navigate("/RecipePage")
+  // }
+  //   return ( 
     
-  </div>
+  //   <div className="NavBar">
+  //     <div className="left-side">
+  //       <h1 onClick={handleHome} a href="/RecipePage">Flatcook Recipes <img src={food} /></h1>
+  //     </div>
+  //     <div className="middle">
+  //       <input type="text" placeholder="Search Recipes..."/>
+  //     </div>
+  //     <div className="right-side">
+  //       <nav>
+        
+  //       </nav>
   
+  //     </div>
+      
+  //   </div>
+    
+    
+  //   )
+  // }
   
-  )
-}
-
-export default NavBar
+  // export default NavBar
+  
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Container = styled.div`
+//   const Container = styled.div`
 // display: flex;
-// flex-direction: column
-// `
-// const Header = styled.div`
-//   color: white;
-//   background-color:black;
-//   display: flex;
-//   flex-direction: row;
-//   padding: 20px
-//   font-size: 25px;
-//   font-weight: bold
-//   box-shadow: 0 3px 6px 0 #555
+// flex-direction: column;
 // `
 
+// const Header= styled.div`
+// color: white;
+// background-color: black;
+// display: flex;
+// flex-direction: row;
+// align-items: center;
+// justify-content: space-between;
+// padding: 20px;
+// font-size: 45px;
+// font-weight: bold;
+// box-shadow: 0 3px 6px #555
+// `
 
-// function NavBar(){
-//     return <Container>
-//       <Header>Flatcook Recipes</Header>
-//     </Container>
+// const RecipeNameComponent = styled.div`
+// display: flex;
+// align-items: center;
+// `
+// const RecipeIcon = styled.img`
+// width: 36px;
+// height: 46px;
+// margin: 5px;
+
+// `
+// const SearchComponent = styled.div`
+//  display: flex;
+// flex-direction: row;
+// backgroud-color: white;
+// border-radius: 10px;
+// padding: 13px;
+// width: 15%;
+// font-size: 50px;
+// height: 70px;
+// `
+
+// const SearchInput = styled.input`
+// border: none;
+// outline: none;
+// margin-left: 10px;
+// font-size: 16px;
+// font-weight: bold;
+// padding: 30px;
+// width: 120%;
+// `
+
+// function NavBar() {
+//   return(
+//     <Container>
+//       <Header>
+//       <RecipeNameComponent><RecipeIcon src='/pot-of-food.svg'/>
+//       Flatcook Recipes
+//       </RecipeNameComponent>
+      
+//       <SearchComponent>
+//         <SearchInput placeholder="Search Recipes..." />
+//       </SearchComponent>
+//       </Header>
+//       Hello
+//       </Container>
+//   )
 // }
 
 // export default NavBar
 
 
 
-{/* <div className="leftSide">
-              <div className="links">
-                <a href="/RecipePage">Flatcook</a>
-            </div>
-            </div>
-            <div className="rightSide"></div>
-              <input type="text" placeholder="Search..."/>
-              <button>Search</button> */}
 
 
-              // import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLinbk} from './NavBarElements'
-// import styled from "styled-components";
 
 
-// export const Container = styled.div`
-// display: flex;
-// flex-direction: column;
-// `
-
-// export const Header = styled.div`
-// color: white;
-// background-color: black;
-// display: flex;
-// flex-direction: row;
-// padding: 20px;
-// justify-content: space-between;
-// align-items: center;
-// font-size: 25px;
-// font-weight: bold;
-// box-shadow: 0 3px 6px 0 #555
-// `
-
-// export const RecipeNameComponent = styled.div`
-// display: flex;
-// align-items: center;
-// font-size: 34px;
-// `
-// export const RecipeIcon = styled.img`
-// width: 36px;
-// height: 36px;
-// margin: 15px;
-// `
-// export const SearchComponent = styled.div`
-// display: flex;
-//   flex-direction: row;
-//   padding: 10px 10px;
-//   border-radius: 6px;
-//   margin-left: 20px;
-//   width: 30%;
-//   background-color: white;
-// `
-
-// export const SearchInput = styled.input`
-// border: none;
-// outline: none;
-// margin-left: 15px;
-// font-size: 18px;
-// font-weight: bold;
-// padding: 10px 10px;
-// border-radius: 6px;
-// right: 25%
-// `
-
-// <Container>
-  //   <Header>
-  //   <RecipeNameComponent><RecipeIcon src='pot-of-food.svg' />Flatcook Recipes</RecipeNameComponent>
-  //   {/* <SearchComponent> */}
-  //     {/* <img src="search-icon.svg" /> */}
-  //     <SearchInput placeholder="Search Recipe..." />
-  //   {/* </SearchComponent> */}
-  //   </Header>
-  // </Container>
