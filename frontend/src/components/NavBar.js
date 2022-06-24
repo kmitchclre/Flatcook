@@ -13,7 +13,7 @@ import {
   NavItemBtn,
   NavLinks,
   NavBtnLink,
-  Button
+  Button,
 } from "./Navbar.style";
 
 function Navbar() {
@@ -44,8 +44,7 @@ function Navbar() {
         <Nav>
           <NavbarContainer>
             <NavLogo to="/" onClick={closeMobileMenu}>
-              
-            Flatiron Recipes <img src="/pot-of-food.svg" />
+              Flatcook <img src="/pot-of-food.svg" />
             </NavLogo>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
@@ -63,13 +62,13 @@ function Navbar() {
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to="/CreateRecipe" onClick={closeMobileMenu}>
+                <NavLinks to="/CreateNewRecipe" onClick={closeMobileMenu}>
                   Create Recipe
                 </NavLinks>
               </NavItem>
 
               <NavItem>
-                <NavLinks to="ContactUs" onClick={closeMobileMenu}>
+                <NavLinks to="/Contact" onClick={closeMobileMenu}>
                   Contact Us
                 </NavLinks>
               </NavItem>
@@ -97,58 +96,34 @@ function Navbar() {
 
 export default Navbar;
 
+// function NavBar() {
+//   let navigate = useNavigate();
 
+//   function handleHome() {
+//     navigate("/RecipePage")
+// }
+//   return (
 
+//   <div className="NavBar">
+//     <div className="left-side">
+//       <h1 onClick={handleHome} a href="/RecipePage">Flatcook Recipes <img src={food} /></h1>
+//     </div>
+//     <div className="middle">
+//       <input type="text" placeholder="Search Recipes..."/>
+//     </div>
+//     <div className="right-side">
+//       <nav>
 
+//       </nav>
 
+//     </div>
 
+//   </div>
 
+//   )
+// }
 
-
-
-
-
-
-
-
-
-
-
-
-  // function NavBar() {
-  //   let navigate = useNavigate();
-  
-  //   function handleHome() {
-  //     navigate("/RecipePage")
-  // }
-  //   return ( 
-    
-  //   <div className="NavBar">
-  //     <div className="left-side">
-  //       <h1 onClick={handleHome} a href="/RecipePage">Flatcook Recipes <img src={food} /></h1>
-  //     </div>
-  //     <div className="middle">
-  //       <input type="text" placeholder="Search Recipes..."/>
-  //     </div>
-  //     <div className="right-side">
-  //       <nav>
-        
-  //       </nav>
-  
-  //     </div>
-      
-  //   </div>
-    
-    
-  //   )
-  // }
-  
-  // export default NavBar
-  
-
-
-
-
+// export default NavBar
 
 //   const Container = styled.div`
 // display: flex;
@@ -206,7 +181,7 @@ export default Navbar;
 //       <RecipeNameComponent><RecipeIcon src='/pot-of-food.svg'/>
 //       Flatcook Recipes
 //       </RecipeNameComponent>
-      
+
 //       <SearchComponent>
 //         <SearchInput placeholder="Search Recipes..." />
 //       </SearchComponent>
@@ -217,10 +192,3 @@ export default Navbar;
 // }
 
 // export default NavBar
-
-
-
-
-
-
-
